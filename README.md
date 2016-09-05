@@ -134,8 +134,7 @@ xhr.onreadystatechange = function(){
 	
 	xhr.open("get","a.php",true);
 	
-	xhr.send(null);
-}
+	xhr.send(null);}
 
 
 如果请求要求是同步,则可以不必编写onreadystatechange函数，把处理数据代码放在send()后面即可
@@ -178,8 +177,7 @@ $('[type = "button"]).click(function(){
 	          
 			alert(data);
 			
-		},"text");
-})
+		},"text");})
 
 上述实现了点击button按钮后想a.php发送get请求,并且发送数据name=ma,age=21
 
@@ -225,8 +223,7 @@ $('[type = "button"]').click(function(){
 			
 		}
 		
-	})
-})
+	})})
 
 上述代码和$.get("a.php",function(data){alert(data)},"json")具有一样的功能
 
@@ -274,8 +271,7 @@ oButton.onclick = function() {
         
         async : false
         
-    });
-}
+    });}
 
 ##### node端部分
 
@@ -295,8 +291,7 @@ app.post('/isuser', function(req, res) {
     
       res.send(404);
       
-    }
-});
+    }});
   
   
 ### Ajax优缺点
