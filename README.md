@@ -13,6 +13,7 @@ AJAX的核心是XMLHttpRequerst对象，简称XHR，提供了向服务器发送�
 #### 原生的XHR对象
 
 首先需要先创建一个XHR对象，所有现代浏览器均支持XMLHttpRequest对象。
+
 1.利用构造函数创建新的对象，实例化XMLHttpRequest
 var xhr = new XMLHttpRequest();
 //至于IE7之前早期版本,使用的是ActiveXObject对象，根据W3C手册,可以这样创建一个XHR对象。
@@ -149,6 +150,7 @@ $('[type = "button"]').click(function(){
 ### 关于AJAX后端实现
 
 这里以node为例来介绍
+
 例：
 ##### 前端部分
 var oButton = document.getElementById('myButton');
@@ -179,12 +181,18 @@ app.post('/isuser', function(req, res) {
 ### Ajax优缺点
 Ajax带来的好处：
 1、通过异步模式，实现动态不刷新，提升了用户体验 
+
 2、优化了浏览器和服务器之间的传输，减少不必要的数据往返，减少了带宽占用 
+
 3、Ajax在客户端运行，承担了一部分本来由服务器承担的工作，减少了大用户量下的服务器负载
 
 Ajax的缺点：
 1、Ajax不支持浏览器back按钮
+
 2、安全问题,Ajax暴露了与服务器交互的细节 
+
 3、对搜索引擎的支持比较弱
+
 4、破坏了程序的异常机制
+
 5、不容易调试
