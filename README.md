@@ -3,7 +3,9 @@
 
 ## AJAX
 
-AJAX是Asynchronous Javascript and XML 异步的javascript和XML，
+```
+AJAX是Asynchronous Javascript and XML 异步的javascript和XML
+```
 
 是一种在不重新加载页面的情况下能和服务器交换数据并更新部分页面内容的技术，可以不需要任何浏览器插件而且绝大多数浏览器支持，同时打破了以往之用表单传输数据的方式，实现了按需发送数据。
 
@@ -56,7 +58,7 @@ xhr.open("get","example.php",true);
 xhr.send(null);
 ```
 
-*对于GET请求还可以向URL添加信息
+* 对于GET请求还可以向URL添加信息
 
 ```
 xhr.open("get","a.php?name=ma",true);
@@ -64,7 +66,7 @@ xhr.open("get","a.php?name=ma",true);
 xhr.send(null);
 ```
 
-*如果是POST请求
+* 如果是POST请求
 
 POST请求通常是用于向服务器发送应该被保存或者是处理的数据，而且相对于GET来说可以包含很多数据且格式不限。
 
@@ -80,7 +82,7 @@ xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 xhr.send("name=ma&age=21");
 ```
 
-*在提供服务器请求的过程中，有两种方式，分别是：GET和POST。
+* 在提供服务器请求的过程中，有两种方式，分别是：GET和POST。
 
 GET： 一般用于信息获取，用URL传递参数，对发送信息数量有限制，一般2000个字符
 
@@ -128,7 +130,7 @@ HTTP      状态码                  说明
 readyState属性的值每次改变都会触发onreadystatechange事件，利用这个事件来检测每次变化后的readyState的值。
 
 
-*如果请求为异步，则按照以下方式编写onreadystatechange函数：
+* 如果请求为异步，则按照以下方式编写onreadystatechange函数：
 
 ```
 xhr.onreadystatechange = function(){
@@ -149,7 +151,7 @@ xhr.onreadystatechange = function(){
 }
 ```
 
-*如果请求要求是同步,则可以不必编写onreadystatechange函数，把处理数据代码放在send()后面即可：
+* 如果请求要求是同步,则可以不必编写onreadystatechange函数，把处理数据代码放在send()后面即可：
 
 ```
 xhr.open("get","a.php",false);
@@ -168,7 +170,7 @@ $.get()和$.post()方法
 
 二者参数和用法完全相同,以$.get()为例
 
-$.get()支持四个参数：
+* $.get()支持四个参数：
 
 url请求的页面的URL地址;
 
@@ -199,12 +201,12 @@ $('[type = "button"]).click(function(){
 上述实现了点击button按钮后想a.php发送get请求，并且发送数据name=ma,age=21。
 
 
-因为在PHP中,POST和GET发送的数据都会通过$_REQUEST[]获取，因此$.post()和$.get()可以根据需求进行切换。
+* 因为在PHP中,POST和GET发送的数据都会通过$_REQUEST[]获取，因此$.post()和$.get()可以根据需求进行切换。
 
 因为$.post()和$.get()只可以完成简单的AJAX请求，jQuery还提供了$.ajax()方法，该方法不仅能实现前两者的功能，还提供了更丰富的回调函数，提示给用户更多信息。
 
 
-$.ajax()的用法类似,但是提供了更多的参数
+* $.ajax()的用法类似,但是提供了更多的参数
 
 url
 
