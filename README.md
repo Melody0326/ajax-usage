@@ -16,7 +16,7 @@ AJAX的核心是XMLHttpRequerst对象，简称XHR，提供了向服务器发送�
 
 首先需要先创建一个XHR对象，所有现代浏览器均支持XMLHttpRequest对象。
 
-1.利用构造函数创建新的对象，实例化XMLHttpRequest
+#####1.利用构造函数创建新的对象，实例化XMLHttpRequest
 
 var xhr = new XMLHttpRequest();
 
@@ -25,7 +25,7 @@ var xhr = new XMLHttpRequest();
 var xhr = new ActiveXObject("Microsoft.XMLHTTP");
 
 
-2.连接服务器
+#####2.连接服务器
 
 使用XHR对象,调用的第一个方法是open()，该方法有三个参数：method要发送的请求的类型，通常为GET或者POST；url指的是文件在服务器上的位置；async表示请求是否异步处理，true为异步false为同步。
 
@@ -36,7 +36,7 @@ xhr.open("get","a.php",true);
 但是open()方法不会真正的发送请求而只是启动了一个请求准备发送。
 
 
-3.发送请求
+#####3.发送请求
 
 真正发送请求到服务器需要使用send()方法
 
@@ -70,7 +70,7 @@ xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 xhr.send("name=ma&age=21");
 
 
-在提供服务器请求的过程中，有两种方式，分别是：GET和POST。
+*在提供服务器请求的过程中，有两种方式，分别是：GET和POST。
 
 GET： 一般用于信息获取，用URL传递参数，对发送信息数量有限制，一般2000个字符
 
@@ -89,7 +89,7 @@ POST：是通过提交表单来传值
 发送包含未知字符的用户输入时，POST比 GET更稳定也更可靠
 
 
-4.接收响应
+#####4.接收响应
 
 当请求被发送到服务器后，我们需要执行一些响应任务，在处理响应的时候主要是针对XHR的几个重要属性进行检测:
 
@@ -118,7 +118,7 @@ HTTP      状态码                  说明
 readyState属性的值每次改变都会触发onreadystatechange事件，利用这个事件来检测每次变化后的readyState的值。
 
 
-如果请求为异步，则按照以下方式编写onreadystatechange函数
+*如果请求为异步，则按照以下方式编写onreadystatechange函数
 
 xhr.onreadystatechange = function(){
 
@@ -137,7 +137,7 @@ xhr.onreadystatechange = function(){
 	xhr.send(null);}
 
 
-如果请求要求是同步,则可以不必编写onreadystatechange函数，把处理数据代码放在send()后面即可
+*如果请求要求是同步,则可以不必编写onreadystatechange函数，把处理数据代码放在send()后面即可
 
 xhr.open("get","a.php",false);
 
@@ -166,7 +166,7 @@ type可选,服务器端返回内容的格式,通常为text,html,xml,json,script�
 
 
 例如:
-
+```
 $('[type = "button"]).click(function(){
 
 	$.get("a.php",
@@ -177,9 +177,12 @@ $('[type = "button"]).click(function(){
 	          
 			alert(data);
 			
-		},"text");})
+		},"text");
+		
+})
+```
 
-上述实现了点击button按钮后想a.php发送get请求,并且发送数据name=ma,age=21
+上述实现了点击button按钮后想a.php发送get请求，并且发送数据name=ma,age=21。
 
 
 因为在PHP中,POST和GET发送的数据都会通过$_REQUEST[]获取，因此$.post()和$.get()可以根据需求进行切换。
@@ -188,9 +191,10 @@ $('[type = "button"]).click(function(){
 
 
 $.ajax()的用法类似,但是提供了更多的参数
+
 url
 
-type：post或者get
+type：post或get
 
 timeout：设置超时时间
 
@@ -207,6 +211,7 @@ error:请求失败是被调用的函数
 global:默认true,表示是否触发全局AJAX事件
 
 例如:
+```
 $('[type = "button"]').click(function(){
 
 	$.ajax({
@@ -223,23 +228,26 @@ $('[type = "button"]').click(function(){
 			
 		}
 		
-	})})
+	})
+	
+})
+```
 
-上述代码和$.get("a.php",function(data){alert(data)},"json")具有一样的功能
+上述代码和$.get("a.php",function(data){alert(data)},"json")具有一样的功能。
 
 ### 整个ajax异步可以总结为：
 
-创建XMLHttpRequest对象，即创建一个异步调用对象
+创建XMLHttpRequest对象，即创建一个异步调用对象；
 
-创建一个新的HTTP请求，并指定该HTTP请求的方法、URL及是否异步
+创建一个新的HTTP请求，并指定该HTTP请求的方法、URL及是否异步；
 
-设置响应HTTP请求状态变化的函数
+设置响应HTTP请求状态变化的函数；
 
-发送HTTP请求
+发送HTTP请求；
 
-获取异步调用返回的数据
+获取异步调用返回的数据；
 
-使用JavaScript和DOM实现局部刷新
+使用JavaScript和DOM实现局部刷新。
 
 
 ### 关于AJAX后端实现
@@ -249,6 +257,7 @@ $('[type = "button"]').click(function(){
 例：
 ##### 前端部分
 
+```
 var oButton = document.getElementById('myButton');
 
 var sName = document.getElementById('isName').value;
@@ -271,10 +280,13 @@ oButton.onclick = function() {
         
         async : false
         
-    });}
+    });
+}
+```
 
 ##### node端部分
 
+```
 //用户注册时判断用户名是否已存在
 
 app.post('/isuser', function(req, res) {
@@ -291,8 +303,10 @@ app.post('/isuser', function(req, res) {
     
       res.send(404);
       
-    }});
-  
+    }
+    
+});
+```
   
 ### Ajax优缺点
 
