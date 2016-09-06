@@ -3,7 +3,7 @@
 
 ## AJAX
 
-AJAX是Asynchronous Javascript and XML 异步的javascript和XML
+AJAX是Asynchronous Javascript and XML 异步的javascript和XML，
 
 是一种在不重新加载页面的情况下能和服务器交换数据并更新部分页面内容的技术，可以不需要任何浏览器插件而且绝大多数浏览器支持，同时打破了以往之用表单传输数据的方式，实现了按需发送数据。
 
@@ -18,11 +18,15 @@ AJAX的核心是XMLHttpRequerst对象，简称XHR，提供了向服务器发送�
 
 #####1.利用构造函数创建新的对象，实例化XMLHttpRequest
 
+```
 var xhr = new XMLHttpRequest();
+```
 
 //至于IE7之前早期版本,使用的是ActiveXObject对象，根据W3C手册,可以这样创建一个XHR对象。
 
+```
 var xhr = new ActiveXObject("Microsoft.XMLHTTP");
+```
 
 
 #####2.连接服务器
@@ -31,7 +35,9 @@ var xhr = new ActiveXObject("Microsoft.XMLHTTP");
 
 例如:
 
+```
 xhr.open("get","a.php",true);
+```
 
 但是open()方法不会真正的发送请求而只是启动了一个请求准备发送。
 
@@ -44,18 +50,21 @@ send()方法只接受一个参数：要求发送的数据，如果是不发送�
 
 例如:
 
+```
 xhr.open("get","example.php",true);
 
 xhr.send(null);
+```
 
-对于GET请求还可以向URL添加信息
+*对于GET请求还可以向URL添加信息
 
+```
 xhr.open("get","a.php?name=ma",true);
 
 xhr.send(null);
+```
 
-
-如果是POST请求
+*如果是POST请求
 
 POST请求通常是用于向服务器发送应该被保存或者是处理的数据，而且相对于GET来说可以包含很多数据且格式不限。
 
@@ -63,12 +72,13 @@ POST请求通常是用于向服务器发送应该被保存或者是处理的数�
 
 例如:
 
+```
 xhr.open("post","a.php",true);
 
 xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 
 xhr.send("name=ma&age=21");
-
+```
 
 *在提供服务器请求的过程中，有两种方式，分别是：GET和POST。
 
@@ -93,9 +103,9 @@ POST：是通过提交表单来传值
 
 当请求被发送到服务器后，我们需要执行一些响应任务，在处理响应的时候主要是针对XHR的几个重要属性进行检测:
 
-1.readyState 表示当前XHR对象状态，取值0-4,我们只对 readyState = 4 的阶段感兴趣，此时表示数据已经准备就绪而且用户可以使用；
+######1.readyState 表示当前XHR对象状态，取值0-4,我们只对 readyState = 4 的阶段感兴趣，此时表示数据已经准备就绪而且用户可以使用；
 
-2.status 表示响应HTTP的状态
+######2.status 表示响应HTTP的状态
 
 HTTP      状态码                  说明
 
@@ -111,15 +121,16 @@ HTTP      状态码                  说明
 
 503   ServiceUnavailable    服务器过载导致无法完成请求
 
-3.responseText 服务器返回的文本，作为响应主体被返回的文本
+######3.responseText 服务器返回的文本，作为响应主体被返回的文本
 
 在接受到响应后，第一步检查status属性，以确定响应成功返回，如果发送请求是要求异步发送，检测readyState属性，确定当前活动阶段。
 
 readyState属性的值每次改变都会触发onreadystatechange事件，利用这个事件来检测每次变化后的readyState的值。
 
 
-*如果请求为异步，则按照以下方式编写onreadystatechange函数
+*如果请求为异步，则按照以下方式编写onreadystatechange函数：
 
+```
 xhr.onreadystatechange = function(){
 
 	if(xhr.readyState == 4 && xhr.status == 200){
@@ -134,16 +145,19 @@ xhr.onreadystatechange = function(){
 	
 	xhr.open("get","a.php",true);
 	
-	xhr.send(null);}
+	xhr.send(null);
+}
+```
 
+*如果请求要求是同步,则可以不必编写onreadystatechange函数，把处理数据代码放在send()后面即可：
 
-*如果请求要求是同步,则可以不必编写onreadystatechange函数，把处理数据代码放在send()后面即可
-
+```
 xhr.open("get","a.php",false);
 
 xhr.send(null);
 
 alert(xhr.responseText);
+```
 
 
 #### jQuery提供了更多的快捷操作,不用去处理XHR对象，使AJAX变得极其简单
